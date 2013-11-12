@@ -5,4 +5,4 @@
               {applications,[kernel,stdlib]},
               {mod,{myapp_app,[]}},
               {env,[]},
-              {modules,[myapp_app,myapp_sup,parse_csv]}]}.
+              {modules,[csv_ets,myapp_app,myapp_sup,parse_csv,ping_pong]}]}.

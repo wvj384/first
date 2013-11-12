@@ -4,11 +4,11 @@
 parse(Path) -> 
 	{ok, Binary}=file:read_file(Path),
 %	io:format("~w",[Binary]), 
-	[parse_p(X) || X <- binary:split(Binary,<<"\n">>,[global])].
+	[parse_p(X) || X <- binary:split(Binary,<<"\n">>,[global]), X/=<<>>].
 
 parse_p(X) ->
 	List=binary:split(X,<<",">>,[global]), 
-	list_to_tuple([ get_type(Y) || Y <- List]).
+	list_to_tuple([ get_type(Y) || Y <- List, Y /= <<>>]).
 
 get_type(<<"\"",Rest/binary>>) -> 
 	Size=size(Rest)-1, 
@@ -20,5 +20,4 @@ get_type(B) ->
 	I -> I
 	catch
 	error:_ -> catch list_to_float(List_B)
-
 end.
