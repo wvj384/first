@@ -5,4 +5,6 @@
               {applications,[kernel,stdlib]},
               {mod,{myapp_app,[]}},
               {env,[]},
-              {modules,[csv_ets,myapp_app,myapp_sup,parse_csv,ping_pong]}]}.
+              {modules,[counter,csv_ets,gen_serv_csv,myapp_app,myapp_sup,
+                        parse_csv,ping_pong,telnet_csv,telnet_gen,
+                        telnet_time]}]}.

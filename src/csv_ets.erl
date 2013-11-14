@@ -3,8 +3,9 @@
 
 load() ->
 	ets:new(users,[named_table]), 
-	ets:insert(users,parse_csv:parse("/root/wvj384/first/users.csv")).
-read(UserId) -> 
+	ets:insert(users,parse_csv:parse("/home/adminuser/Erlang_test/first/users.csv")).
+read(UserId) ->
+	io:format("I was called from ~p~n",[self()]), 
 	case ets:lookup(users,UserId) of
 	[] -> no_such_user;
 	L -> L
@@ -14,7 +15,7 @@ write(UserId,Amount) ->
 
 save() -> 
 	List= << <<(parse_back(X))/binary,"\n">> || X <- ets:tab2list(users)>>,
-	file:write_file("/root/wvj384/first/users.csv", List).
+	file:write_file("/home/adminuser/Erlang_test/first/users.csv", List).
 
 parse_back(X) -> 
 	<< <<(parse_to_b(Y))/binary,",">> || Y <- tuple_to_list(X)>>.
